@@ -1,4 +1,5 @@
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="https://thymeleaf.org">
+
 <head>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
@@ -6,9 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EpicTask</title>
 </head>
+
 <body>
+    <nav>
+        <a href="/logout" title="sair">
+            <span class="material-icons">exit_to_app</span>
+        </a>
+    </nav>
     <h1>EpicTask</h1>
 
     <a class="btn blue" href="/tarefas/cadastrar">cadastar</a>
+
+    <span class="alert" th:text="${mensagem}" th:if="${mensagem!=null}"></span>
+
+    <div class="tasks">
+        <div class="card-task" th:each="tarefa :  ${tarefas}">
+            <h2 th:text="${tarefa.titulo}"></h2>
+            <p th:text="${tarefa.titulo}"></p>
+            <form action="/tarefas" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+
+                <input type="hidden" name="id" th:value="${tarefa.id}">
+                <button class="btn btn-sm red">
+                    <span class="material-icons">delete</span>
+                </button>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
