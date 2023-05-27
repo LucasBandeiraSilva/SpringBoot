@@ -40,7 +40,7 @@ public class tarefaController {
             return "redirect:/tarefas";
         }
 
-        @DeleteMapping("/tarefas")
+        @DeleteMapping("/")
         public String apagar(long id, RedirectAttributes redirect){
             repository.deleteById(id);
             redirect.addFlashAttribute("mensagem", "tarefa apagada com sucesso");
